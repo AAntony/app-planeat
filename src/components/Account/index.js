@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Account extends Component {
-  render () {
-    return (
+import { PasswordForgetForm } from '../PasswordForget'
+import PasswordChangeForm from '../PasswordChange'
+import { AuthUserContext, withAuthorization } from '../Session'
+
+const AccountPage = () => (
+  <AuthUserContext.Consumer>
+    {authUser => (
       <div>
-        <h1>Account</h1>
+        <h1>Account: {authUser ? authUser.email : 'Nope'}</h1>
+        <PasswordForgetForm />
+        <PasswordChangeForm />
       </div>
-    )
-  }
-}
+    )}
+  </AuthUserContext.Consumer>
+)
 
-export default Account
+const condition = authUser => !!authUser
+
+export default withAuthorization(condition)(AccountPage)
