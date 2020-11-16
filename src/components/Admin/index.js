@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { FirebaseContext } from '../Firebase';
+import { FirebaseContext } from '../Firebase'
 
 const Admin = () => (
   <FirebaseContext.Consumer>
