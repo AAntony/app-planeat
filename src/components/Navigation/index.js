@@ -17,10 +17,16 @@ const Navigation = () => (
 const NavigationAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link to={ROUTES.WALL}>Wall</Link>
     </li>
     <li>
-      <Link to={ROUTES.HOME}>Home</Link>
+      <Link to={ROUTES.STOCK}>Stock</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.CART}>Cart</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.RECIPE}>Recipe</Link>
     </li>
     <li>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
@@ -37,9 +43,6 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
       <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
     </li>
     <li>
@@ -47,33 +50,5 @@ const NavigationNonAuth = () => (
     </li>
   </ul>
 )
-
-// const Navigation = () => (
-//   <div>
-//     <ul>
-//       <li>
-//         <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-//       </li>
-//       <li>
-//         <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-//       </li>
-//       <li>
-//         <Link to={ROUTES.LANDING}>Landing</Link>
-//       </li>
-//       <li>
-//         <Link to={ROUTES.HOME}>Home</Link>
-//       </li>
-//       <li>
-//         <Link to={ROUTES.ACCOUNT}>Account</Link>
-//       </li>
-//       <li>
-//         <Link to={ROUTES.ADMIN}>Admin</Link>
-//       </li>
-//       <li>
-//         <SignOutButton />
-//       </li>
-//     </ul>
-//   </div>
-// )
 
 export default Navigation

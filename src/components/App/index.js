@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
 
 import Navigation from '../Navigation'
-import LandingPage from '../Landing'
+import WallPage from '../Wall'
 import SignUpPage from '../SignUp'
 import SignInPage from '../SignIn'
+import CartPage from '../Cart'
+import StockPage from '../Stock'
+import RecipePage from '../Recipe'
 import PasswordForgetPage from '../PasswordForget'
-import HomePage from '../Home'
+import PlanningPage from '../Planning'
 import AccountPage from '../Account'
 import AdminPage from '../Admin'
 
@@ -21,14 +24,14 @@ const App = () => (
     <div>
       <Navigation />
       <hr />
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route
-        path={ROUTES.PASSWORD_FORGET}
-        component={PasswordForgetPage}
-      />
-      <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.STOCK} component={StockPage} />
+      <Route path={ROUTES.RECIPE} component={RecipePage} />
+      <Route path={ROUTES.CART} component={CartPage} />
+      <Route path={ROUTES.WALL} component={WallPage} />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route path={ROUTES.PLANNING} component={PlanningPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>
