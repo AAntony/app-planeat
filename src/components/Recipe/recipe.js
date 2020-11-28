@@ -13,17 +13,17 @@ const RecipeCard = ({ data }) => {
     try {
       return `/assets/images/${chemin}`
     } catch (err) {
-      return '../../../ Default.jpeg'
+      return '../../../Default.jpeg'
     }
   }
 
   return (
     <div className='card'>
-      <div className='image'>
-        <img src={requireImage(data.image)} alt={data.nom} />
-      </div>
       <div className='recette'>
-        <h2>{data.nom}</h2>
+        <h2>{data.name}</h2>
+        <div className='image'>
+          <img src={requireImage(data.image)} alt={data.nom} />
+        </div>
         <ul className='liste-ingredients'>
           {ingredients}
         </ul>
