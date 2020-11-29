@@ -1,18 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
-import base from '../Firebase/base'
+import base, { firebaseApp } from '../Firebase/base'
 
-const apiRecipe = WrappedComponent => (
+const apiRecipe = ( WrappedComponent, uidUser ) => (
+
   class HOC extends Component {
     state = {
-      pseudo: '2axxpwsLB1Qw1NZ7XORtabZgKBg2',
+      uid: '',
       recipies: {}
     }
 
     componentDidMount () {
-      this.ref = base.syncState(`users/${this.state.pseudo}/recipies`, {
-        context: this,
-        state: 'recipies'
+      firebaseApp.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // User logged in already or has just logged in.
+          this.setState({ uid: user.uid })
+          this.ref = base.syncState(`users/${this.state.uid}/recipies`, {
+            context: this,
+            state: 'recipies'
+          })
+        }
       })
     }
   

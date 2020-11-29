@@ -27,6 +27,7 @@ class AddRecipe extends Component {
   render () {
     return (
       <div className='card'>
+        <h2>{this.props.uid}</h2>
         <form
           className='admin-form ajouter-recette' 
           onSubmit={this.onSubmit}>

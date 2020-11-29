@@ -1,5 +1,5 @@
 import React from 'react'
-import { withAuthorization } from '../Session'
+import { AuthUserContext, withAuthorization } from '../Session'
 
 import apiRecipe from './apiRecipe'
 import AddRecipe from './addRecipe'
@@ -12,11 +12,20 @@ const Recipe = ({ createRecette, recipiesDB }) => {
       data={recipiesDB[key]}
       key={key} />)
 
+  const uidUser = (
+    <AuthUserContext.Consumer>
+      {authUser => (
+        authUser ? authUser.uid : 'Nope'
+      )}
+    </AuthUserContext.Consumer>
+  )
+
   return (
     <>
       <h1>Vos recettes</h1>
       {recipies}
       <AddRecipe
+        uid={uidUser}
         addRecipe={createRecette}
       />
     </>
