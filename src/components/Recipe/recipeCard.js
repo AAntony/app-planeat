@@ -50,6 +50,7 @@ const RecipeCard = ({
     <div className='card'>
       <div className='recette'>
         <h2>{recipies[key].name} - {key}</h2>
+        <button onClick={showModal}>Edit</button>
         <button onClick={() => handleDeleteRecipe(key)}>Delete</button>
         <div className='image'>
           <img src={requireImage(recipies[key].image)} alt={recipies[key].name} />
@@ -61,9 +62,8 @@ const RecipeCard = ({
           {instructions}
         </ol>
       </div>
-      <button onClick={showModal}>Edit</button>
       <Modal show={isOpen} onHide={hideModal}>
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
