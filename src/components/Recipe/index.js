@@ -3,14 +3,20 @@ import { AuthUserContext, withAuthorization } from '../Session'
 
 import apiRecipe from './apiRecipe'
 import AddRecipe from './addRecipe'
-import RecipeCard from './recipe'
+import RecipeCard from './recipeCard'
 
-const Recipe = ({ createRecette, recipiesDB }) => {
+const Recipe = ({ createRecipe, updateRecipe, deleteRecipe, recipiesDB }) => {
 
   const recipies = Object.keys(recipiesDB)
-    .map(key => <RecipeCard
-      data={recipiesDB[key]}
-      key={key} />)
+    .map(key =>
+      <RecipeCard
+        recipies={recipiesDB}
+        deleteRecipe={deleteRecipe}
+        updateRecipe={updateRecipe}
+        key={key}
+        id={key}
+      />
+    )
 
   const uidUser = (
     <AuthUserContext.Consumer>
@@ -22,11 +28,11 @@ const Recipe = ({ createRecette, recipiesDB }) => {
 
   return (
     <>
-      <h1>Vos recettes</h1>
+      <h1>Your recipe</h1>
       {recipies}
       <AddRecipe
         uid={uidUser}
-        addRecipe={createRecette}
+        createRecipe={createRecipe}
       />
     </>
   )

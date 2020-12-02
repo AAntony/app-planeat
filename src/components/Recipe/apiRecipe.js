@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 
 import base, { firebaseApp } from '../Firebase/base'
 
@@ -27,9 +27,21 @@ const apiRecipe = ( WrappedComponent, uidUser ) => (
       base.removeBinding(this.ref)
     }
 
-    createRecette = recipe => {
+    createRecipe = recipe => {
       const recipies = {...this.state.recipies}
       recipies[`recipe-${Date.now()}`] = recipe
+      this.setState({ recipies })
+    }
+
+    updateRecipe = (key, newRecipe) => {
+      const recipies = {...this.state.recipies}
+      recipies[key] = newRecipe
+      this.setState({ recipies })
+    }
+
+    deleteRecipe = key => {
+      const recipies = {...this.state.recipies}
+      recipies[key] = null
       this.setState({ recipies })
     }
 
@@ -37,7 +49,9 @@ const apiRecipe = ( WrappedComponent, uidUser ) => (
       return (
         <WrappedComponent
           recipiesDB={this.state.recipies}
-          createRecette={this.createRecette}
+          createRecipe={this.createRecipe}
+          updateRecipe={this.updateRecipe}
+          deleteRecipe={this.deleteRecipe}
           {...this.props}
         />
       )

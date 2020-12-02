@@ -15,8 +15,8 @@ class AddRecipe extends Component {
 
   onSubmit = event => {
     event.preventDefault()
-    const recette = { ...this.state }
-    this.props.addRecipe(recette)
+    const recipe = { ...this.state }
+    this.props.createRecipe(recipe)
     this.resetForm()
   }
 
@@ -29,13 +29,13 @@ class AddRecipe extends Component {
       <div className='card'>
         <h2>{this.props.uid}</h2>
         <form
-          className='admin-form ajouter-recette' 
+          className='admin-form ajouter-recipe' 
           onSubmit={this.onSubmit}>
-          <input value={this.state.name} type='text' name='name' onChange={this.handleChange} placeholder='Nom de la recette' />
-          <input value={this.state.image} type='text' name='image' onChange={this.handleChange} placeholder={'Nom de l\'image'} />
-          <textarea value={this.state.ingredients} rows='3' name='ingredients' onChange={this.handleChange} placeholder='Nom des ingrédients' />
-          <textarea value={this.state.instructions} rows='15' name='instructions' onChange={this.handleChange} placeholder='Nom des instructions' />
-          <button type='submit'>Ajouter une recette</button>
+          <input value={this.state.name} type='text' name='name' onChange={this.handleChange} placeholder={'Recipe\'s name'} />
+          <input value={this.state.image} type='text' name='image' onChange={this.handleChange} placeholder={'Recipe\'s image'} />
+          <textarea value={this.state.ingredients} rows='3' name='ingredients' onChange={this.handleChange} placeholder={'Recipe\'s ingredients'} />
+          <textarea value={this.state.instructions} rows='15' name='instructions' onChange={this.handleChange} placeholder={'Recipe\'s instructions'} />
+          <button type='submit'>Add recipe</button>
         </form>
       </div>
     )
