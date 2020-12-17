@@ -1,5 +1,7 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
+import DatePicker from 'react-datepicker'
+
 
 const StockCard = ({
   id: key,
@@ -20,7 +22,14 @@ const StockCard = ({
   const currentStockItem = stockItems[key]
 
   const handleChange = (event, key) => {
-    const { name, value } = event.target
+    let name, value
+    if (event.target === undefined) {
+      name = 'dueDate'
+      value = event.getTime()
+    } else {
+      name = event.target.name
+      value = event.target.value
+    }
     const stockItem = stockItems[key]
     stockItem[name] = value
     updateStockItem(key, stockItem)
@@ -38,6 +47,10 @@ const StockCard = ({
     setIsOpen(false)
   }
 
+  const options = {
+    year: 'numeric', month: 'numeric', day: 'numeric'
+  }
+
   return (
     <div className='card'>
       <div className='recette'>
@@ -47,6 +60,12 @@ const StockCard = ({
         <div className='image'>
           <img src={requireImage(stockItems[key].image)} alt={stockItems[key].name} />
         </div>
+        <div>{stockItems[key].quantity}</div>
+        <div>{stockItems[key].price}</div>
+        <div>{new Date(stockItems[key].dueDate).toLocaleDateString(undefined, options)}</div>
+        <div>{stockItems[key].currentDate}</div>
+        <div>{stockItems[key].imperative}</div>
+        <div>{stockItems[key].comment}</div>
       </div>
       <Modal show={isOpen} onHide={hideModal}>
         <Modal.Header closeButton>
@@ -54,10 +73,20 @@ const StockCard = ({
         </Modal.Header>
         <Modal.Body>
           <div className='card'>
-            <h1>DIOOO</h1>
+            <h1>Edit</h1>
             <form action='' className='admin-form'>
               <input value={currentStockItem.name} onChange={e => handleChange(e, key)} type='text' name='name' />
               <input value={currentStockItem.image} onChange={e => handleChange(e, key)} type='text' name='image' />
+              <input value={currentStockItem.quantity} onChange={e => handleChange(e, key)} type='text' name='quantity' />
+              <input value={currentStockItem.price} onChange={e => handleChange(e, key)} type='text' name='price' />
+              <DatePicker
+                dateFormat='dd/MM/yyyy'
+                selected={new Date(currentStockItem.dueDate)}
+                name='dueDate'
+                onChange={date => handleChange(date, key)}
+              />
+              <input value={currentStockItem.imperative} onChange={e => handleChange(e, key)} type='text' name='imperative' />
+              <input value={currentStockItem.comment} onChange={e => handleChange(e, key)} type='text' name='comment' />
             </form>
           </div>
         </Modal.Body>
