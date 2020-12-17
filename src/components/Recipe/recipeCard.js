@@ -68,7 +68,7 @@ const RecipeCard = ({
         </Modal.Header>
         <Modal.Body>
           <div className='card'>
-            <h1>DIOOO</h1>
+            <h1>Edit</h1>
             <form action='' className='admin-form'>
               <input value={currentRecipe.name} onChange={e => handleChange(e, key)} type='text' name='name' />
               <input value={currentRecipe.image} onChange={e => handleChange(e, key)} type='text' name='image' />
